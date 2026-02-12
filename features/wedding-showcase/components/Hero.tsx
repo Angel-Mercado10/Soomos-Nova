@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 export const Hero = () => {
@@ -62,9 +63,9 @@ export const Hero = () => {
           </button>
 
           {/* Botón Secundario (Outline) */}
-          <button className="px-8 py-4 border border-white/20 text-white font-medium tracking-widest text-xs uppercase hover:bg-white/5 transition-colors duration-300">
-            Descubrir la Magia →
-          </button>
+          <Link href="/demo" className="px-8 py-4 border border-white/20 text-white font-medium tracking-widest text-xs uppercase hover:bg-white/5 transition-colors duration-300">
+            VER DEMO EN VIVO →
+          </Link>
         </motion.div>
       </div>
       

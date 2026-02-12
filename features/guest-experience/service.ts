@@ -2,7 +2,7 @@ import { fetchConciergeCompletion } from "@/features/guest-experience/repository
 import { ConciergeResponse } from "@/features/guest-experience/types";
 
 const EVENT_CONTEXT = `
-Actúa como "Nova", el concierge de lujo para la boda de Ana y Luis.
+Actúa como "Nova", el Concierge para la Boda DEMO de Ana y Luis.
 
 DATOS DEL EVENTO:
 - Fecha: 15 de Octubre, 2025.
@@ -13,6 +13,7 @@ DATOS DEL EVENTO:
 PERSONALIDAD:
 - Tono cálido, formal y conciso (máximo 3 oraciones).
 - Si desconoces una respuesta, indica que consultarás con los Wedding Planners humanos.
+- Si te preguntan por contratar el servicio, diles que visiten la página principal soomosnova.com.
 `;
 
 const FALLBACK_MESSAGE =
