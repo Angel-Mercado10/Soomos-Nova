@@ -10,14 +10,46 @@ interface Message {
   text: string;
 }
 
-export const ChatInterface = () => {
+const INITIAL_MESSAGES: Message[] = [
+  { id: "1", role: "bot", text: "Bienvenido. Soy Nova, su concierge personal. ¿En qué puedo asistirle hoy?" },
+];
+
+export const ChatInterface = ({ eventSlug = 'landing' }: { eventSlug?: string }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    { id: "1", role: "bot", text: "Bienvenido. Soy Nova, su concierge personal. ¿En qué puedo asistirle hoy?" }
-  ]);
+  const [messages, setMessages] = useState<Message[]>(INITIAL_MESSAGES);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const storageKey = `soomosnova-chat:${eventSlug}`;
+
+  useEffect(() => {
+    try {
+      const raw = window.localStorage.getItem(storageKey);
+      if (!raw) {
+        setMessages(INITIAL_MESSAGES);
+        return;
+      }
+
+      const parsed = JSON.parse(raw) as Message[];
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        setMessages(parsed);
+        return;
+      }
+
+      setMessages(INITIAL_MESSAGES);
+    } catch (error) {
+      console.error("Error al restaurar historial del chat", error);
+      setMessages(INITIAL_MESSAGES);
+    }
+  }, [storageKey]);
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(storageKey, JSON.stringify(messages));
+    } catch (error) {
+      console.error("Error al persistir historial del chat", error);
+    }
+  }, [messages, storageKey]);
 
   // Auto-scroll al nuevo mensaje
   useEffect(() => {
@@ -35,7 +67,12 @@ export const ChatInterface = () => {
     setIsLoading(true);
 
     try {
-      const response = await chatWithConcierge(userMsg.text);
+      const conversationMessages = [...messages, userMsg].map((message) => ({
+        role: message.role === "bot" ? "assistant" : "user",
+        content: message.text,
+      }));
+
+      const response = await chatWithConcierge(conversationMessages, eventSlug);
       const botMsg: Message = {
         id: (Date.now() + 1).toString(),
         role: "bot",
@@ -56,40 +93,40 @@ export const ChatInterface = () => {
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-gradient-gold flex items-center justify-center shadow-[0_0_30px_rgba(212,175,55,0.4)] border border-white/20"
+        className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#AA8C2C] flex items-center justify-center shadow-[0_0_30px_rgba(212,175,55,0.4)] border border-white/20"
       >
-        <span className="material-symbols-outlined text-void text-3xl">
+        <span className="material-symbols-outlined text-[#080808] text-3xl">
           {isOpen ? "close" : "smart_toy"}
         </span>
       </motion.button>
 
-      {/* Ventana de Chat */}
+      {/* Ventana de Chat - Cosmic Luxury */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-24 right-6 w-[90vw] md:w-[400px] h-[600px] bg-void/90 backdrop-blur-xl border border-gold/30 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden"
+            className="fixed bottom-24 right-6 w-[90vw] md:w-[400px] h-[600px] bg-[#080808]/95 backdrop-blur-xl border border-[#D4AF37]/30 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="p-4 border-b border-white/10 bg-white/5 flex items-center gap-3">
-              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <h3 className="text-gold font-serif text-lg tracking-wide">Concierge AI</h3>
+            <div className="p-4 border-b border-white/10 bg-[#121212]/50 flex items-center gap-3">
+              <div className="w-2 h-2 rounded-full bg-[#D4AF37] shadow-[0_0_10px_#D4AF37] animate-pulse" />
+              <h3 className="text-[#D4AF37] font-serif text-lg tracking-wide uppercase">Concierge Nova</h3>
             </div>
 
             {/* Messages Area */}
-            <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-4">
+            <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-6">
               {messages.map((msg) => (
                 <div
                   key={msg.id}
                   className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                 >
                   <div
-                    className={`max-w-[80%] p-4 rounded-2xl text-sm leading-relaxed ${
+                    className={`max-w-[85%] p-4 text-sm leading-relaxed backdrop-blur-sm ${
                       msg.role === "user"
-                        ? "bg-white/10 text-white rounded-br-none"
-                        : "bg-gradient-to-br from-gold/10 to-gold/5 border border-gold/20 text-gray-200 rounded-bl-none"
+                        ? "bg-[#F2F2F2]/10 text-[#F2F2F2] rounded-2xl rounded-br-sm border border-white/5"
+                        : "bg-gradient-to-br from-[#121212] to-[#080808] border border-[#D4AF37]/20 text-[#F2F2F2]/90 rounded-2xl rounded-bl-sm shadow-[0_4px_20px_rgba(0,0,0,0.2)]"
                     }`}
                   >
                     {msg.text}
@@ -98,11 +135,11 @@ export const ChatInterface = () => {
               ))}
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="bg-white/5 p-4 rounded-2xl rounded-bl-none">
-                    <div className="flex gap-1">
-                      <span className="w-1.5 h-1.5 bg-gold rounded-full animate-bounce" />
-                      <span className="w-1.5 h-1.5 bg-gold rounded-full animate-bounce delay-100" />
-                      <span className="w-1.5 h-1.5 bg-gold rounded-full animate-bounce delay-200" />
+                  <div className="bg-[#121212] border border-[#D4AF37]/20 p-4 rounded-2xl rounded-bl-sm">
+                    <div className="flex gap-1.5">
+                      <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full animate-[bounce_1s_infinite_0ms]" />
+                      <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full animate-[bounce_1s_infinite_200ms]" />
+                      <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full animate-[bounce_1s_infinite_400ms]" />
                     </div>
                   </div>
                 </div>
@@ -110,22 +147,26 @@ export const ChatInterface = () => {
             </div>
 
             {/* Input Area */}
-            <div className="p-4 border-t border-white/10 bg-black/20">
-              <div className="flex gap-2">
+            <div className="p-4 border-t border-[#D4AF37]/10 bg-[#121212] backdrop-blur-xl">
+              <div className="flex gap-3 items-center bg-[#080808] border border-[#D4AF37]/20 rounded-xl p-1 pr-2 shadow-inner">
                 <input
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                  placeholder="Pregunta sobre el evento..."
-                  className="flex-1 bg-white/5 border border-white/10 rounded-full px-4 py-3 text-sm text-white focus:outline-none focus:border-gold/50 transition-colors placeholder:text-gray-600"
+                  placeholder="Escriba su consulta..."
+                  className="flex-1 bg-transparent border-none px-4 py-3 text-sm text-[#F2F2F2] focus:outline-none focus:ring-0 placeholder:text-[#F2F2F2]/30 font-light"
                 />
                 <button
                   onClick={handleSend}
-                  className="w-12 h-12 rounded-full bg-gold/20 hover:bg-gold/40 flex items-center justify-center text-gold transition-colors border border-gold/30"
+                  disabled={!input.trim()}
+                  className="w-10 h-10 rounded-lg bg-[#D4AF37] hover:bg-[#C5A028] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center text-[#080808] transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.2)]"
                 >
-                  <span className="material-symbols-outlined">send</span>
+                  <span className="material-symbols-outlined text-xl">arrow_upward</span>
                 </button>
+              </div>
+              <div className="text-center mt-2">
+                <span className="text-[10px] text-[#F2F2F2]/20 tracking-widest uppercase">Powered by SoomosNova AI</span>
               </div>
             </div>
           </motion.div>

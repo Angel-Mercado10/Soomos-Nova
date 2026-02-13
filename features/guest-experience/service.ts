@@ -1,32 +1,35 @@
-import { fetchConciergeCompletion } from "@/features/guest-experience/repository";
-import { ConciergeResponse } from "@/features/guest-experience/types";
-
-const EVENT_CONTEXT = `
-Actúa como "Nova", el Concierge para la Boda DEMO de Ana y Luis.
-
-DATOS DEL EVENTO:
-- Fecha: 15 de Octubre, 2025.
-- Lugar: Hacienda San Gabriel, Cuernavaca.
-- Dress Code: Riguroso Etiqueta (Black Tie).
-- Mesa de Regalos: Liverpool (Evento 12345) y Amazon.
-
-PERSONALIDAD:
-- Tono cálido, formal y conciso (máximo 3 oraciones).
-- Si desconoces una respuesta, indica que consultarás con los Wedding Planners humanos.
-- Si te preguntan por contratar el servicio, diles que visiten la página principal soomosnova.com.
-`;
+import { fetchConciergeCompletion, getEventContext } from "@/features/guest-experience/repository";
+import { ConciergeChatMessage, ConciergeResponse } from "@/features/guest-experience/types";
 
 const FALLBACK_MESSAGE =
-  "Mis disculpas, mis circuitos están abrumados por la emoción del evento. ¿Podría repetir su pregunta?";
+  "Disculpe, mi señal se cruzó. ¿Podría reformular?";
 
-const buildPrompt = (guestQuestion: string) => {
-  return `${EVENT_CONTEXT}\n\nPregunta del invitado: "${guestQuestion}"`;
+const buildConversation = (systemContext: string, messages: ConciergeChatMessage[]): ConciergeChatMessage[] => {
+  const normalizedMessages = messages
+    .filter((message) => message?.content?.trim())
+    .map((message) => ({
+      role: message.role,
+      content: message.content.trim(),
+    }));
+
+  return [
+    {
+      role: "system",
+      content: `${systemContext}\n\nHISTORIAL RECIENTE: Conversación continua; no te presentes de nuevo.\nMEMORIA RELEVANTE: el usuario se llama Ángel.`,
+    },
+    ...normalizedMessages,
+  ];
 };
 
-export const generateConciergeResponse = async (guestMessage: string): Promise<ConciergeResponse> => {
+export const generateConciergeResponse = async (
+  messages: ConciergeChatMessage[],
+  eventSlug: string = "landing"
+): Promise<ConciergeResponse> => {
   try {
-    const prompt = buildPrompt(guestMessage);
-    const text = await fetchConciergeCompletion(prompt);
+    const systemContext = await getEventContext(eventSlug);
+    const conversation = buildConversation(systemContext, messages);
+    const text = await fetchConciergeCompletion(conversation);
+
     return { text };
   } catch (error) {
     console.error("Error al consultar Gemini", error);

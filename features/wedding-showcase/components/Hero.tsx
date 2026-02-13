@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden bg-void">
+    <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-32 overflow-hidden bg-void">
       
       {/* Fondo Ambiental (Glow sutil) */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-gold/10 blur-[120px] rounded-full pointer-events-none" />
@@ -36,7 +36,7 @@ export const Hero = () => {
           <span className="text-transparent bg-clip-text bg-gradient-gold italic">
             Inmortalizada
           </span> <br />
-          en el Infinito.
+          en Digital
         </motion.h1>
 
         {/* Subtítulo */}
@@ -46,7 +46,7 @@ export const Hero = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="font-sans text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed"
         >
-          Transformamos recuerdos efímeros en un legado digital eterno. 
+          Transformamos recuerdos efímeros en un legado digital. 
           La primera plataforma impulsada por IA diseñada exclusivamente para el sector nupcial de élite.
         </motion.p>
 

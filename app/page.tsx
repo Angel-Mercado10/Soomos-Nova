@@ -1,6 +1,6 @@
 import { Navbar } from "@/features/wedding-showcase/components/Navbar";
 import { Hero } from "@/features/wedding-showcase/components/Hero";
-import { SocialProof } from "@/features/wedding-showcase/components/SocialProof";
+import { TechAuthority } from "@/features/wedding-showcase/components/TechAuthority";
 import { FeaturesGrid } from "@/features/wedding-showcase/components/FeaturesGrid";
 
 export default function Home() {
@@ -8,7 +8,7 @@ export default function Home() {
     <main className="bg-void min-h-screen">
       <Navbar />
       <Hero />
-      <SocialProof />
+      <TechAuthority />
       <FeaturesGrid />
     </main>
   );
