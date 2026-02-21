@@ -1,15 +1,19 @@
 import { Navbar } from "@/features/wedding-showcase/components/Navbar";
 import { Hero } from "@/features/wedding-showcase/components/Hero";
-import { TechAuthority } from "@/features/wedding-showcase/components/TechAuthority";
-import { FeaturesGrid } from "@/features/wedding-showcase/components/FeaturesGrid";
+import { ProblemValidation } from "@/features/wedding-showcase/components/ProblemValidation";
+import { SolutionSection } from "@/features/wedding-showcase/components/SolutionSection";
+import { ExclusivitySection } from "@/features/wedding-showcase/components/ExclusivitySection";
+import { FinalCTA } from "@/features/wedding-showcase/components/FinalCTA";
 
 export default function Home() {
   return (
-    <main className="bg-void min-h-screen">
+    <main className="bg-[#080808] min-h-screen">
       <Navbar />
       <Hero />
-      <TechAuthority />
-      <FeaturesGrid />
+      <ProblemValidation />
+      <SolutionSection />
+      <ExclusivitySection />
+      <FinalCTA />
     </main>
   );
 }

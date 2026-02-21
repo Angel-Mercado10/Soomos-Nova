@@ -20,7 +20,7 @@ export const getEnv = () => {
   });
 
   if (!parsed.success) {
-    const messages = parsed.error.errors.map((issue) => issue.message).join(" \n");
+    const messages = parsed.error.issues.map((issue) => issue.message).join(" \n");
     throw new Error(`Configuracion de entorno invalida:\n${messages}`);
   }
 

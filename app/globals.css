@@ -3,28 +3,39 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 5, 5, 5;
-  --background-end-rgb: 0, 0, 0;
+  --foreground-rgb: 242, 242, 242;
+  --background-rgb: 8, 8, 8;
 }
 
-/* Estilos base para el scrollbar de lujo */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Luxury scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 5px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #050505;
+  background: #080808;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 4px;
+  background: #1a1a1a;
+  border-radius: 3px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #D4AF37; /* Gold al pasar el mouse */
+  background: #D4AF37;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: #050505;
-  overflow-x: hidden; /* Evita scroll horizontal accidental */
+  background: #080808;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(212, 175, 55, 0.25);
+  color: #F2F2F2;
 }

@@ -10,15 +10,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "#050505", // Void Black
-        foreground: "#ffffff",
-        void: "#050505", 
+        background: "#080808",
+        foreground: "#F2F2F2",
+        void: "#080808",
+        primary: "#D4AF37",
+        surface: "#121212",
         gold: {
-          DEFAULT: "#D4AF37", // Champagne Gold
+          DEFAULT: "#D4AF37",
           light: "#F4DF97",
           dark: "#AA8C2C",
         },
-        surface: "rgba(255, 255, 255, 0.03)",
       },
       fontFamily: {
         serif: ["var(--font-playfair)", "serif"],

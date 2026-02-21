@@ -31,7 +31,7 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
       </head>
       <body
-        className={`${playfair.variable} ${montserrat.variable} antialiased bg-void text-white selection:bg-gold selection:text-void`}
+        className={`${playfair.variable} ${montserrat.variable} antialiased bg-[#080808] text-[#F2F2F2]`}
       >
         {children}
       </body>

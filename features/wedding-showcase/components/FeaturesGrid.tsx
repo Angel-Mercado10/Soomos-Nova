@@ -1,54 +1,97 @@
-interface FeatureCard {
+import { FadeInView } from "@/shared/ui/FadeInView";
+
+interface MembershipTier {
   title: string;
   description: string;
   tag: string;
+  cta: string;
 }
 
-const features: FeatureCard[] = [
+const tiers: MembershipTier[] = [
   {
     title: "Atlas Inmersivo",
-    description: "Gemelos digitales del venue con rutas guiadas, iluminación reactiva y audio espacial personalizado.",
-    tag: "Realidad sensorial",
+    description:
+      "Gemelos digitales del venue con rutas guiadas, iluminación reactiva y audio espacial personalizado para cada invitado.",
+    tag: "Realidad Sensorial",
+    cta: "Solicitar Información",
   },
   {
-    title: "Memorias Cinematicas",
-    description: "Narrativas generadas por IA que mezclan video, sonido binaural y cartas holograficas para cada invitado.",
+    title: "Memorias Cinemáticas",
+    description:
+      "Narrativas generadas que entrelazan video, sonido binaural y cartas personalizadas. Un recuerdo vivo, no un archivo.",
     tag: "Storyliving",
+    cta: "Agendar Demostración",
   },
   {
-    title: "Oraculo de Hospitalidad",
-    description: "Concierge predictivo que anticipa deseos y coordina staff humano en tiempo real.",
-    tag: "IA asistida",
+    title: "Oráculo de Hospitalidad",
+    description:
+      "Concierge predictivo que anticipa necesidades y coordina el staff en tiempo real. Hospitalidad invisible, siempre presente.",
+    tag: "Inteligencia Asistida",
+    cta: "Conocer Más",
   },
 ];
 
 export const FeaturesGrid = () => {
   return (
-    <section id="membresia" className="bg-void py-24 md:py-32">
-      <div className="max-w-6xl mx-auto px-6 space-y-12">
-        <div className="text-center space-y-4">
-          <p className="text-xs uppercase tracking-[0.35em] text-gold">Arquitectura viva</p>
-          <h2 className="font-serif text-3xl md:text-5xl text-white">Membresia Nova Signature</h2>
-          <p className="text-white/60 max-w-2xl mx-auto">
-            Cada feature se desarrolla como una casa de alta costura digital. Seleccionamos solo 12 bodas por año para garantizar impecabilidad.
-          </p>
+    <section
+      id="membresía"
+      className="bg-[#080808] py-32 md:py-40 relative overflow-hidden"
+      aria-label="Membresía Nova Signature"
+    >
+      <div className="max-w-6xl mx-auto px-6 lg:px-10">
+        {/* Section Header */}
+        <div className="text-center space-y-5 mb-20">
+          <FadeInView>
+            <p className="text-[11px] uppercase tracking-[0.4em] text-gold">
+              Arquitectura Viva
+            </p>
+          </FadeInView>
+          <FadeInView delay={0.1}>
+            <h2 className="font-display text-3xl md:text-5xl text-[#F2F2F2] font-light">
+              Membresía Nova Signature
+            </h2>
+          </FadeInView>
+          <FadeInView delay={0.15}>
+            <p className="text-white/40 max-w-xl mx-auto text-base leading-relaxed font-light">
+              Cada experiencia se diseña como una pieza de alta costura digital.
+              Solo 12 bodas por año para garantizar impecabilidad absoluta.
+            </p>
+          </FadeInView>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {features.map((feature) => (
-            <article key={feature.title} className="relative p-8 border border-white/10 rounded-3xl bg-gradient-to-br from-white/5 to-transparent">
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-gold/5 to-transparent blur-3xl opacity-0 hover:opacity-40 transition-opacity" />
-              <div className="relative space-y-4">
-                <span className="text-xs uppercase tracking-[0.3em] text-white/40">{feature.tag}</span>
-                <h3 className="font-serif text-2xl text-white">{feature.title}</h3>
-                <p className="text-white/70 text-sm leading-relaxed">{feature.description}</p>
-                <div className="pt-6">
-                  <button className="text-gold text-xs tracking-[0.3em] uppercase border-b border-gold/40 pb-1">
-                    Agendar demostracion
-                  </button>
+        {/* Membership Cards */}
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+          {tiers.map((tier, idx) => (
+            <FadeInView key={tier.title} delay={0.1 + idx * 0.12}>
+              <article className="group relative flex flex-col p-10 border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm hover:border-gold/20 transition-all duration-500 hover:-translate-y-1 h-full">
+                {/* Gold top accent line */}
+                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
+
+                <div className="flex flex-col flex-1 gap-5">
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-gold/70">
+                    {tier.tag}
+                  </span>
+
+                  <h3 className="font-display text-2xl text-[#F2F2F2]">
+                    {tier.title}
+                  </h3>
+
+                  <p className="text-white/40 text-sm leading-relaxed font-light flex-1">
+                    {tier.description}
+                  </p>
+
+                  <div className="pt-4">
+                    <a
+                      href="#acceso"
+                      className="inline-block text-gold text-[11px] tracking-[0.2em] uppercase border-b border-gold/30 pb-1 hover:border-gold transition-colors duration-300"
+                      aria-label={`${tier.cta} — ${tier.title}`}
+                    >
+                      {tier.cta}
+                    </a>
+                  </div>
                 </div>
-              </div>
-            </article>
+              </article>
+            </FadeInView>
           ))}
         </div>
       </div>
