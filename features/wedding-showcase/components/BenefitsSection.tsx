@@ -1,35 +1,47 @@
 import { FadeInView } from "@/shared/ui/FadeInView";
+import Image from "next/image";
 
 interface Benefit {
   title: string;
   description: string;
-  icon: string;
+  support: string;
+  tone: "light" | "gray";
+  image: string;
+  imageAlt: string;
 }
 
 const benefits: Benefit[] = [
   {
-    title: "Invitaciones Digitales",
-    description:
-      "Diseño personalizado para cada invitado con confirmación directa integrada.",
-    icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
+    title: "Invitación premium desde el primer contacto",
+    description: "Confirmaciones rápidas y sin seguimiento manual.",
+    support: "Menos fricción · Más control",
+    tone: "light",
+    image: "/images/invitacion_premium.png",
+    imageAlt: "Mockup de invitación premium",
   },
   {
-    title: "Control de Acceso QR",
-    description:
-      "Código único e intransferible por invitado. Validación profesional al instante.",
-    icon: "M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z",
+    title: "Acceso QR preciso en segundos",
+    description: "Cada invitado entra con validación única y segura.",
+    support: "Sin filas largas · Sin accesos no autorizados",
+    tone: "gray",
+    image: "/images/confirmada_qr.png",
+    imageAlt: "Pantalla de confirmación y acceso QR",
   },
   {
-    title: "Galería Privada",
-    description:
-      "Todas las fotos de tu evento en un solo lugar, protegidas y organizadas.",
-    icon: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z",
+    title: "Galería privada, todo en un solo lugar",
+    description: "Recibe y organiza recuerdos sin depender de múltiples chats.",
+    support: "Orden total · Privacidad real",
+    tone: "light",
+    image: "/images/galeria.png",
+    imageAlt: "Vista de galería privada del evento",
   },
   {
-    title: "Panel en Tiempo Real",
-    description:
-      "Confirmaciones, asistencia y métricas de tu evento actualizadas al instante.",
-    icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z",
+    title: "Decisiones claras antes y durante el evento",
+    description: "Visualiza asistencia en tiempo real y ajusta logística al instante.",
+    support: "Información accionable · Tranquilidad operativa",
+    tone: "gray",
+    image: "/images/estadisticas.png",
+    imageAlt: "Panel de estadísticas del evento",
   },
 ];
 
@@ -37,67 +49,68 @@ export const BenefitsSection = () => {
   return (
     <section
       id="beneficios"
-      className="bg-[#080808] py-32 md:py-40 relative overflow-hidden"
+      className="py-12 md:py-16 bg-[#080808]"
       aria-label="Beneficios de la plataforma"
     >
-      <div
-        className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gold/[0.02] blur-[140px] rounded-full pointer-events-none"
-        aria-hidden="true"
-      />
-
-      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-10">
-        {/* Header */}
-        <div className="text-center space-y-6 mb-20">
+      <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-10 space-y-6 md:space-y-8">
+        <div className="text-center space-y-6 py-14 md:py-20">
           <FadeInView>
-            <p className="text-[14px] uppercase tracking-[0.4em] text-gold">
+            <p className="text-[12px] uppercase tracking-[0.3em] text-white/45">
               Beneficios
             </p>
           </FadeInView>
           <FadeInView delay={0.1}>
-            <h2 className="font-display text-3xl md:text-5xl text-[#F2F2F2] font-light leading-tight">
-              Todo lo que necesitas.
+            <h2 className="font-display text-4xl md:text-6xl text-[#f2f2f2] font-light leading-[1.06]">
+              Resultados claros.
               <br />
-              <span className="text-white/40">Nada que sobre.</span>
+              <span className="text-white/45">Sin complejidad operativa.</span>
             </h2>
           </FadeInView>
         </div>
 
-        {/* Grid — 4 columns on desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {benefits.map((benefit, idx) => (
-            <FadeInView key={benefit.title} delay={0.1 + idx * 0.08}>
-              <article className="group relative flex flex-col items-center text-center p-8 border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm hover:border-gold/20 transition-all duration-500 hover:-translate-y-1 h-full">
-                {/* Gold top accent */}
-                <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+        {benefits.map((benefit, idx) => {
+          const isGray = benefit.tone === "gray";
 
-                {/* Icon */}
-                <div className="w-12 h-12 flex items-center justify-center mb-6 border border-gold/20 rounded-full group-hover:border-gold/40 transition-colors duration-300">
-                  <svg
-                    width="22"
-                    height="22"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="text-gold"
-                    aria-hidden="true"
-                  >
-                    <path d={benefit.icon} />
-                  </svg>
+          return (
+            <FadeInView key={benefit.title} delay={0.08 + idx * 0.06}>
+              <article
+                className={`rounded-[34px] border px-7 py-10 md:px-12 md:py-14 ${
+                  isGray
+                    ? "bg-[#121212] border-white/[0.08]"
+                    : "bg-[#0e0e0f] border-white/[0.08]"
+                }`}
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+                  <header className="space-y-6">
+                    <p className="text-[12px] uppercase tracking-[0.24em] text-white/45">
+                      Beneficio {idx + 1}
+                    </p>
+                    <h3 className="font-display text-4xl md:text-6xl text-[#f2f2f2] font-light leading-[1.04] tracking-tight">
+                      {benefit.title}
+                    </h3>
+                    <p className="text-white/65 text-base md:text-lg font-light leading-relaxed max-w-xl">
+                      {benefit.description}
+                    </p>
+                    <p className="text-white/45 text-sm uppercase tracking-[0.15em]">
+                      {benefit.support}
+                    </p>
+                  </header>
+
+                  <div className="relative h-[240px] md:h-[300px] rounded-[24px] bg-[#17181a] border border-white/[0.08] flex items-center justify-center overflow-hidden">
+                    <Image
+                      src={benefit.image}
+                      alt={benefit.imageAlt}
+                      width={760}
+                      height={570}
+                      className="w-[92%] h-auto drop-shadow-[0_16px_26px_rgba(0,0,0,0.36)]"
+                      sizes="(max-width: 1024px) 90vw, 44vw"
+                    />
+                  </div>
                 </div>
-
-                <h3 className="font-display text-lg text-[#F2F2F2] tracking-wide mb-3">
-                  {benefit.title}
-                </h3>
-                <p className="text-white/40 text-sm leading-relaxed font-light">
-                  {benefit.description}
-                </p>
               </article>
             </FadeInView>
-          ))}
-        </div>
+          );
+        })}
       </div>
     </section>
   );

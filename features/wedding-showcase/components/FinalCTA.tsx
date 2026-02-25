@@ -4,41 +4,33 @@ export const FinalCTA = () => {
   return (
     <section
       id="acceso"
-      className="relative py-28 md:py-36 overflow-hidden bg-[#101010]"
+      className="relative py-24 md:py-32 overflow-hidden bg-[#101214]"
       aria-label="Llamada final a la acción"
     >
-      {/* Gold ambient glow */}
       <div
-        className="absolute inset-0 bg-gold/[0.03] pointer-events-none"
+        className="absolute inset-0 bg-white/[0.02] pointer-events-none"
         aria-hidden="true"
       />
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-gold/[0.06] blur-[160px] rounded-full pointer-events-none"
-        aria-hidden="true"
-      />
-
-      {/* Top border — gold accent */}
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
 
       <div className="relative z-10 max-w-3xl mx-auto px-6 lg:px-10 text-center">
         <FadeInView>
-          <p className="text-[14px] uppercase tracking-[0.4em] text-gold mb-6">
+          <p className="text-[12px] uppercase tracking-[0.3em] text-white/45 mb-6">
             Acción Final
           </p>
         </FadeInView>
 
         <FadeInView delay={0.1}>
-          <h2 className="font-display text-3xl md:text-5xl text-[#F2F2F2] font-light leading-tight mb-8">
-            Tu boda merece una experiencia
+          <h2 className="font-display text-4xl md:text-6xl text-[#f5f5f7] font-light leading-tight mb-8">
+            Una sola conversación
             <br />
-            impecable de principio a fin.
+            puede cambiar todo.
           </h2>
         </FadeInView>
 
         <FadeInView delay={0.2}>
-          <p className="text-white/40 text-lg leading-relaxed font-light max-w-md mx-auto mb-12">
-            Escríbenos ahora y recibe una guía clara para digitalizar la gestión
-            de tus invitados sin fricción.
+          <p className="text-white/60 text-lg leading-relaxed font-light max-w-xl mx-auto mb-12">
+            Escríbenos por WhatsApp y te mostramos cómo elevar la gestión de
+            invitados con una experiencia verdaderamente premium.
           </p>
         </FadeInView>
 
@@ -47,7 +39,7 @@ export const FinalCTA = () => {
             href="https://wa.me/5559958257?text=Hola%2C%20me%20interesa%20una%20demostraci%C3%B3n%20privada%20de%20SoomosNova"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-12 py-5 bg-gradient-gold text-[#080808] font-semibold text-[14px] uppercase tracking-[0.25em] transition-shadow duration-300 hover:shadow-[0_0_50px_rgba(212,175,55,0.3)]"
+            className="inline-block px-11 py-4 rounded-full bg-white text-[#101214] font-medium text-[13px] uppercase tracking-[0.2em] transition-all duration-300 hover:bg-[#e8e8e8] hover:-translate-y-[1px]"
             aria-label="Chatear por WhatsApp"
           >
             Chatea por WhatsApp
