@@ -1,50 +1,35 @@
-"use client";
-
-import { useState, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-
 interface Testimonial {
   quote: string;
   name: string;
   detail: string;
+  isPlaceholder?: boolean;
 }
 
 const testimonials: Testimonial[] = [
   {
     quote:
-      "SoomosNova transformó por completo la experiencia de nuestros invitados. Todo fluyó con una elegancia que nunca imaginamos posible.",
-    name: "Andrea & Carlos",
-    detail: "Boda en Valle de Bravo, 2026",
+      "Aquí aparecerá un testimonio real de una pareja sobre la experiencia con SoomosNova.",
+    name: "Testimonio disponible pronto",
+    detail: "Estructura lista para agregar prueba social real",
+    isPlaceholder: true,
   },
   {
     quote:
-      "El control que tuvimos sobre cada detalle fue impresionante. Desde las invitaciones hasta la galería, todo impecable.",
-    name: "Mariana & Diego",
-    detail: "Boda en San Miguel de Allende, 2026",
+      "Este espacio está preparado para mostrar resultados, confianza y autoridad con testimonios verificados.",
+    name: "Testimonio disponible pronto",
+    detail: "Añade nombre de pareja, ciudad y fecha del evento",
+    isPlaceholder: true,
   },
   {
     quote:
-      "Nuestros invitados no paraban de preguntar cómo habíamos logrado esa experiencia digital tan sofisticada. SoomosNova fue la respuesta.",
-    name: "Valentina & Andrés",
-    detail: "Boda en Tulum, 2026",
+      "La sección ya está diseñada para reemplazar este texto por citas reales sin tocar la estructura visual.",
+    name: "Testimonio disponible pronto",
+    detail: "Mantiene consistencia premium y legibilidad",
+    isPlaceholder: true,
   },
 ];
 
 export const TestimonialsSection = () => {
-  const [current, setCurrent] = useState(0);
-
-  const next = useCallback(
-    () => setCurrent((prev) => (prev + 1) % testimonials.length),
-    [],
-  );
-  const prev = useCallback(
-    () =>
-      setCurrent(
-        (prev) => (prev - 1 + testimonials.length) % testimonials.length,
-      ),
-    [],
-  );
-
   return (
     <section
       id="testimonios"
@@ -56,101 +41,44 @@ export const TestimonialsSection = () => {
         aria-hidden="true"
       />
 
-      <div className="relative z-10 max-w-3xl mx-auto px-6 lg:px-10 text-center">
-        {/* Eyebrow */}
-        <p className="text-[14px] uppercase tracking-[0.4em] text-gold mb-6">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-10">
+        <p className="text-center text-[14px] uppercase tracking-[0.4em] text-gold mb-6">
           Testimonios
         </p>
+        <h2 className="text-center font-display text-3xl md:text-5xl text-[#F2F2F2] font-light leading-tight mb-14">
+          Prueba social con presencia elegante.
+        </h2>
 
-        {/* Carousel */}
-        <div className="relative min-h-[280px] md:min-h-[220px] flex items-center justify-center">
-          <AnimatePresence mode="wait">
-            <motion.blockquote
-              key={current}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col items-center gap-8"
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {testimonials.map((testimonial, index) => (
+            <article
+              key={index}
+              className="relative h-full border border-white/[0.08] bg-white/[0.02] backdrop-blur-sm p-8 md:p-9"
             >
-              {/* Quote mark */}
               <span
-                className="text-gold/20 font-display text-6xl leading-none select-none"
+                className="text-gold/20 font-display text-5xl leading-none select-none"
                 aria-hidden="true"
               >
                 &ldquo;
               </span>
-
-              <p className="font-sans text-white/60 text-lg md:text-xl leading-relaxed font-light max-w-2xl italic">
-                {testimonials[current].quote}
+              <p className="mt-4 text-white/60 text-base leading-relaxed font-light italic">
+                {testimonial.quote}
               </p>
-
-              <footer className="space-y-1">
+              <footer className="mt-8 space-y-1">
                 <p className="font-display text-[#F2F2F2] text-base tracking-wide">
-                  {testimonials[current].name}
+                  {testimonial.name}
                 </p>
-                <p className="text-white/30 text-sm font-light">
-                  {testimonials[current].detail}
+                <p className="text-white/35 text-sm font-light">
+                  {testimonial.detail}
                 </p>
+                {testimonial.isPlaceholder && (
+                  <p className="text-gold/70 text-xs uppercase tracking-[0.18em] pt-2">
+                    Placeholder
+                  </p>
+                )}
               </footer>
-            </motion.blockquote>
-          </AnimatePresence>
-        </div>
-
-        {/* Navigation dots + arrows */}
-        <div className="flex items-center justify-center gap-6 mt-10">
-          <button
-            onClick={prev}
-            className="text-white/30 hover:text-gold transition-colors duration-300 p-2"
-            aria-label="Testimonio anterior"
-          >
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              aria-hidden="true"
-            >
-              <path d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-
-          <div className="flex gap-2" role="tablist" aria-label="Testimonios">
-            {testimonials.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrent(idx)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  idx === current
-                    ? "bg-gold w-6"
-                    : "bg-white/20 hover:bg-white/40"
-                }`}
-                role="tab"
-                aria-selected={idx === current}
-                aria-label={`Testimonio ${idx + 1}`}
-              />
-            ))}
-          </div>
-
-          <button
-            onClick={next}
-            className="text-white/30 hover:text-gold transition-colors duration-300 p-2"
-            aria-label="Siguiente testimonio"
-          >
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              aria-hidden="true"
-            >
-              <path d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
+            </article>
+          ))}
         </div>
       </div>
     </section>

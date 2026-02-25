@@ -11,7 +11,7 @@ const fadeUp = (delay: number) => ({
 export const Hero = () => {
   return (
     <section
-      className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-40 pb-32 overflow-hidden bg-[#080808]"
+      className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 py-32 md:py-40 overflow-hidden bg-[#080808]"
       aria-label="Presentación principal"
     >
       {/* Ambient gold glow — layered for depth */}
@@ -25,11 +25,11 @@ export const Hero = () => {
       />
 
       {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center gap-10">
+      <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center gap-10">
         {/* Exclusivity badge */}
         <motion.div {...fadeUp(0)}>
           <span className="inline-block border border-gold/20 px-6 py-2 text-gold text-[14px] tracking-[0.35em] font-sans font-medium uppercase">
-            Gestión Premium de Invitados
+            SoomosNova
           </span>
         </motion.div>
 
@@ -38,21 +38,20 @@ export const Hero = () => {
           {...fadeUp(0.15)}
           className="font-display text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.08] tracking-tight text-[#F2F2F2]"
         >
-          Elegancia Total.{" "}
+          Control total de invitados
           <br />
           <em className="not-italic text-transparent bg-clip-text bg-gradient-gold">
-            Control Absoluto.
+            para una boda impecable.
           </em>
         </motion.h1>
 
         {/* Subheadline — Clear value proposition */}
         <motion.p
           {...fadeUp(0.3)}
-          className="font-sans text-white/45 text-xl md:text-2xl max-w-xl leading-relaxed font-light"
+          className="font-sans text-white/45 text-lg md:text-2xl max-w-2xl leading-relaxed font-light"
         >
-          Gestión digital de invitados para bodas exclusivas.
-          Invitaciones, confirmaciones, acceso y galería privada
-          &mdash; todo bajo tu control.
+          Invitaciones digitales, confirmaciones, acceso QR y galería privada en
+          una sola experiencia premium.
         </motion.p>
 
         {/* CTAs — Conversion focused */}
@@ -65,9 +64,9 @@ export const Hero = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="px-10 py-4 bg-gradient-gold text-[#080808] font-semibold text-[14px] uppercase tracking-[0.25em] transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(212,175,55,0.25)]"
-            aria-label="Agendar una demostración privada por WhatsApp"
+            aria-label="Chatear por WhatsApp"
           >
-            Agendar demostración privada
+            Chatea por WhatsApp
           </a>
 
           {/* Scroll nudge */}

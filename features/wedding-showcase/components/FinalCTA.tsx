@@ -4,8 +4,8 @@ export const FinalCTA = () => {
   return (
     <section
       id="acceso"
-      className="relative py-32 md:py-40 overflow-hidden"
-      aria-label="Contactar concierge"
+      className="relative py-28 md:py-36 overflow-hidden bg-[#101010]"
+      aria-label="Llamada final a la acción"
     >
       {/* Gold ambient glow */}
       <div
@@ -23,22 +23,22 @@ export const FinalCTA = () => {
       <div className="relative z-10 max-w-3xl mx-auto px-6 lg:px-10 text-center">
         <FadeInView>
           <p className="text-[14px] uppercase tracking-[0.4em] text-gold mb-6">
-            Siguiente Paso
+            Acción Final
           </p>
         </FadeInView>
 
         <FadeInView delay={0.1}>
           <h2 className="font-display text-3xl md:text-5xl text-[#F2F2F2] font-light leading-tight mb-8">
-            Tu boda merece
+            Tu boda merece una experiencia
             <br />
-            control absoluto.
+            impecable de principio a fin.
           </h2>
         </FadeInView>
 
         <FadeInView delay={0.2}>
           <p className="text-white/40 text-lg leading-relaxed font-light max-w-md mx-auto mb-12">
-            Conversemos sobre tu evento. Sin compromiso, sin formularios
-            interminables. Solo una conversación privada.
+            Escríbenos ahora y recibe una guía clara para digitalizar la gestión
+            de tus invitados sin fricción.
           </p>
         </FadeInView>
 
@@ -48,9 +48,9 @@ export const FinalCTA = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block px-12 py-5 bg-gradient-gold text-[#080808] font-semibold text-[14px] uppercase tracking-[0.25em] transition-shadow duration-300 hover:shadow-[0_0_50px_rgba(212,175,55,0.3)]"
-            aria-label="Hablar con Concierge Nova por WhatsApp"
+            aria-label="Chatear por WhatsApp"
           >
-            Hablar con Concierge Nova
+            Chatea por WhatsApp
           </a>
         </FadeInView>
       </div>
