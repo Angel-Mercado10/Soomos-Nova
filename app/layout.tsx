@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Montserrat } from "next/font/google";
-import "@/app/globals.css"; // 👈 Asegúrate del punto ./
+import { WhatsAppButton } from "@/shared/ui/WhatsAppButton";
+import "@/app/globals.css";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -26,14 +27,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <head>
-        {/* 👇 ESTO ES LO QUE TE FALTA PARA LOS ICONOS 👇 */}
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-      </head>
       <body
         className={`${playfair.variable} ${montserrat.variable} antialiased bg-[#080808] text-[#F2F2F2]`}
       >
         {children}
+        <WhatsAppButton />
       </body>
     </html>
   );

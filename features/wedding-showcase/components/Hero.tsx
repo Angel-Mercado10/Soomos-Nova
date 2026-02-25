@@ -70,15 +70,9 @@ export const Hero = () => {
             Agendar demostración privada
           </a>
 
-          <p className="text-[18px] text-white/40 font-light tracking-wide text-center">
-            Contacto corporativo:{" "}
-            <a
-              href="mailto:hola@soomosnova.com?subject=Solicitud%20de%20disponibilidad%20%E2%80%93%20Boda%20%5BFECHA%5D&body=Hola%20equipo%20SoomosNova%2C%0D%0A%0D%0AEstoy%20interesada%2Fo%20en%20conocer%20m%C3%A1s%20sobre%20el%20sistema%20premium%20de%20gesti%C3%B3n%20digital%20para%20invitados.%0D%0A%0D%0ADatos%20de%20mi%20evento%3A%0D%0A%E2%80%A2%20Fecha%20tentativa%3A%0D%0A%E2%80%A2%20Ciudad%3A%0D%0A%E2%80%A2%20N%C3%BAmero%20aproximado%20de%20invitados%3A%0D%0A%0D%0AMe%20gustar%C3%ADa%20agendar%20una%20demostraci%C3%B3n%20privada%20y%20conocer%20disponibilidad.%0D%0A%0D%0AQuedo%20atenta%2Fo%20a%20su%20respuesta.%0D%0A%0D%0ANombre%3A%0D%0ATel%C3%A9fono%20de%20contacto%3A"
-              className="text-white/50 hover:text-white/70 transition-colors duration-300"
-              aria-label="Enviar correo a hola@soomosnova.com"
-            >
-              hola@soomosnova.com
-            </a>
+          {/* Scroll nudge */}
+          <p className="text-sm text-white/25 font-light tracking-widest uppercase">
+            Descubre más ↓
           </p>
         </motion.div>
       </div>

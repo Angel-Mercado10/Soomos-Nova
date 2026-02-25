@@ -4,10 +4,15 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
-  { label: "El Problema", href: "#problema" },
+  { label: "Beneficios", href: "#beneficios" },
   { label: "Solución", href: "#experiencia" },
+  { label: "Testimonios", href: "#testimonios" },
   { label: "Exclusividad", href: "#exclusividad" },
 ] as const;
+
+const FACEBOOK_URL =
+  "https://www.facebook.com/profile.php?id=61588124897380";
+const INSTAGRAM_URL = "https://www.instagram.com/soomosnova/";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,6 +59,34 @@ export const Navbar = () => {
                 <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-gold transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
+
+            {/* Social Icons */}
+            <div className="flex items-center gap-3 ml-4">
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/40 hover:text-gold transition-colors duration-300"
+                aria-label="Visitar Instagram"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <rect x="2" y="2" width="20" height="20" rx="5" />
+                  <circle cx="12" cy="12" r="5" />
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                </svg>
+              </a>
+              <a
+                href={FACEBOOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/40 hover:text-gold transition-colors duration-300"
+                aria-label="Visitar Facebook"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                </svg>
+              </a>
+            </div>
 
             <a
               href="https://wa.me/5559958257?text=Hola%2C%20quiero%20agendar%20una%20demostraci%C3%B3n%20privada%20de%20SoomosNova"
@@ -123,6 +156,16 @@ export const Navbar = () => {
               >
                 Agendar Demo
               </a>
+
+              {/* Mobile Social Icons */}
+              <div className="flex items-center gap-4 mt-4">
+                <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-gold transition-colors duration-300" aria-label="Visitar Instagram">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" /><circle cx="12" cy="12" r="5" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" /></svg>
+                </a>
+                <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-gold transition-colors duration-300" aria-label="Visitar Facebook">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" /></svg>
+                </a>
+              </div>
             </div>
           </motion.div>
         )}
