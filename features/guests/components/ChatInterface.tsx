@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { chatWithConcierge } from "@/features/guest-experience/actions";
+import { chatWithConcierge } from "@/features/guests/actions";
 
 interface Message {
   id: string;

@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-import { ConciergeChatMessage } from "@/features/guest-experience/types";
+import { ConciergeChatMessage } from "@/features/guests/types";
 import { getEnv } from "@/shared/lib/env";
 
 const DEFAULT_MODEL_ID = "gemini-2.5-flash";

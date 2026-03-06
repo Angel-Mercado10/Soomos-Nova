@@ -1,5 +1,5 @@
-import { fetchConciergeCompletion, getEventContext } from "@/features/guest-experience/repository";
-import { ConciergeChatMessage, ConciergeResponse } from "@/features/guest-experience/types";
+import { fetchConciergeCompletion, getEventContext } from "@/features/guests/repository";
+import { ConciergeChatMessage, ConciergeResponse } from "@/features/guests/types";
 
 const FALLBACK_MESSAGE =
   "Disculpe, mi señal se cruzó. ¿Podría reformular?";

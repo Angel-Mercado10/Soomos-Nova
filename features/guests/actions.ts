@@ -2,8 +2,8 @@
 
 import { z } from "zod";
 
-import { generateConciergeResponse } from "@/features/guest-experience/service";
-import { ConciergeActionResult, ConciergeChatMessage } from "@/features/guest-experience/types";
+import { generateConciergeResponse } from "@/features/guests/service";
+import { ConciergeActionResult, ConciergeChatMessage } from "@/features/guests/types";
 
 const conciergeMessagesSchema = z.array(
   z.object({

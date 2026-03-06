@@ -6,9 +6,8 @@ import { WhatsAppLink } from "@/shared/ui/WhatsAppLink";
 
 const navItems = [
   { label: "Beneficios", href: "#beneficios" },
-  { label: "Solución", href: "#experiencia" },
   { label: "Testimonios", href: "#testimonios" },
-  { label: "Exclusividad", href: "#exclusividad" },
+  { label: "Contáctanos", href: "#acceso" },
 ] as const;
 
 const FACEBOOK_URL =
@@ -89,15 +88,7 @@ export const Navbar = () => {
               </a>
             </div>
 
-            <WhatsAppLink
-              href="https://wa.me/5559958257?text=Hola%2C%20quiero%20agendar%20una%20demostraci%C3%B3n%20privada%20de%20SoomosNova"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ml-4 px-7 py-2.5 border border-gold/40 text-gold text-[14px] uppercase tracking-[0.25em] font-medium hover:bg-gold hover:text-[#080808] transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,175,55,0.15)]"
-              aria-label="Agendar demostración privada"
-            >
-              Agendar Demo
-            </WhatsAppLink>
+
           </div>
 
           {/* Mobile Menu Button */}
@@ -147,16 +138,7 @@ export const Navbar = () => {
                   {item.label}
                 </a>
               ))}
-              <WhatsAppLink
-                href="https://wa.me/5559958257?text=Hola%2C%20quiero%20agendar%20una%20demostraci%C3%B3n%20privada%20de%20SoomosNova"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsOpen(false)}
-                className="mt-2 px-7 py-2.5 border border-gold/40 text-gold text-[14px] uppercase tracking-[0.25em] font-medium hover:bg-gold hover:text-[#080808] transition-all duration-300"
-                aria-label="Agendar demostración privada"
-              >
-                Agendar Demo
-              </WhatsAppLink>
+
 
               {/* Mobile Social Icons */}
               <div className="flex items-center gap-4 mt-4">
