@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { WhatsAppLink } from "@/shared/ui/WhatsAppLink";
 
 const fadeUp = (delay: number) => ({
   initial: { opacity: 0, y: 20 },
@@ -20,20 +21,14 @@ export const Hero = () => {
       />
 
       <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center gap-10">
-        <motion.div {...fadeUp(0)}>
-          <span className="inline-block border border-white/15 px-6 py-2 text-white/55 text-[12px] tracking-[0.3em] font-sans font-medium uppercase">
-            SoomosNova
-          </span>
-        </motion.div>
-
         <motion.h1
           {...fadeUp(0.15)}
           className="font-display text-5xl md:text-7xl lg:text-[5.2rem] leading-[1.05] tracking-tight text-[#f2f2f2]"
         >
-          Invitados confirmados.
+          SoomosNova
           <br />
-          <em className="not-italic text-white/55">
-            Acceso bajo control.
+          <em className="not-italic text-white/55 text-4xl md:text-5xl lg:text-6xl mt-4 block">
+            Eventos matrimoniales bajo control
           </em>
         </motion.h1>
 
@@ -49,7 +44,7 @@ export const Hero = () => {
           {...fadeUp(0.45)}
           className="flex flex-col items-center gap-6 pt-8"
         >
-          <a
+          <WhatsAppLink
             href="https://wa.me/5559958257?text=Hola%2C%20estoy%20interesado%20en%20conocer%20el%20sistema%20de%20gesti%C3%B3n%20digital%20de%20invitados%20de%20Soomos%20Nova%20para%20mi%20evento.%20Me%20gustar%C3%ADa%20agendar%20una%20demostraci%C3%B3n%20privada."
             target="_blank"
             rel="noopener noreferrer"
@@ -57,7 +52,7 @@ export const Hero = () => {
             aria-label="Chatear por WhatsApp"
           >
             Chatea por WhatsApp
-          </a>
+          </WhatsAppLink>
         </motion.div>
       </div>
     </section>

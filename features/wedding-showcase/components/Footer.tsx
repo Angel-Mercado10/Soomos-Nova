@@ -1,4 +1,5 @@
 import { FadeInView } from "@/shared/ui/FadeInView";
+import { WhatsAppLink } from "@/shared/ui/WhatsAppLink";
 
 const FACEBOOK_URL =
   "https://www.facebook.com/profile.php?id=61588124897380";
@@ -52,7 +53,7 @@ export const Footer = () => {
                 >
                   {EMAIL}
                 </a>
-                <a
+                <WhatsAppLink
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -60,7 +61,7 @@ export const Footer = () => {
                   aria-label="Contactar por WhatsApp"
                 >
                   +52 55 5995 8257
-                </a>
+                </WhatsAppLink>
               </div>
             </div>
 

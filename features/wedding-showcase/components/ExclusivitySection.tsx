@@ -1,4 +1,5 @@
 import { FadeInView } from "@/shared/ui/FadeInView";
+import { WhatsAppLink } from "@/shared/ui/WhatsAppLink";
 
 export const ExclusivitySection = () => {
   return (
@@ -29,7 +30,7 @@ export const ExclusivitySection = () => {
         </FadeInView>
 
         <FadeInView delay={0.3}>
-          <a
+          <WhatsAppLink
             href="https://wa.me/5559958257?text=Hola%2C%20quiero%20consultar%20disponibilidad%20para%20mi%20boda"
             target="_blank"
             rel="noopener noreferrer"
@@ -37,7 +38,7 @@ export const ExclusivitySection = () => {
             aria-label="Solicitar disponibilidad por WhatsApp"
           >
             Solicitar Disponibilidad
-          </a>
+          </WhatsAppLink>
         </FadeInView>
       </div>
     </section>

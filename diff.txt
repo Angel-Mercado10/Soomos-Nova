@@ -1,0 +1,774 @@
+diff --git a/features/wedding-showcase/components/BenefitsSection.tsx b/features/wedding-showcase/components/BenefitsSection.tsx
+index 86ab23e..9d578fb 100644
+--- a/features/wedding-showcase/components/BenefitsSection.tsx
++++ b/features/wedding-showcase/components/BenefitsSection.tsx
+@@ -1,35 +1,47 @@
+ import { FadeInView } from "@/shared/ui/FadeInView";
++import Image from "next/image";
+ 
+ interface Benefit {
+   title: string;
+   description: string;
+-  icon: string;
++  support: string;
++  tone: "light" | "gray";
++  image: string;
++  imageAlt: string;
+ }
+ 
+ const benefits: Benefit[] = [
+   {
+-    title: "Invitaciones Digitales",
+-    description:
+-      "Diseño personalizado para cada invitado con confirmación directa integrada.",
+-    icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
++    title: "Invitación premium desde el primer contacto",
++    description: "Confirmaciones rápidas y sin seguimiento manual.",
++    support: "Menos fricción · Más control",
++    tone: "light",
++    image: "/images/invitacion_premium.png",
++    imageAlt: "Mockup de invitación premium",
+   },
+   {
+-    title: "Control de Acceso QR",
+-    description:
+-      "Código único e intransferible por invitado. Validación profesional al instante.",
+-    icon: "M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z",
++    title: "Acceso QR preciso en segundos",
++    description: "Cada invitado entra con validación única y segura.",
++    support: "Sin filas largas · Sin accesos no autorizados",
++    tone: "gray",
++    image: "/images/confirmada_qr.png",
++    imageAlt: "Pantalla de confirmación y acceso QR",
+   },
+   {
+-    title: "Galería Privada",
+-    description:
+-      "Todas las fotos de tu evento en un solo lugar, protegidas y organizadas.",
+-    icon: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z",
++    title: "Galería privada, todo en un solo lugar",
++    description: "Recibe y organiza recuerdos sin depender de múltiples chats.",
++    support: "Orden total · Privacidad real",
++    tone: "light",
++    image: "/images/galeria.png",
++    imageAlt: "Vista de galería privada del evento",
+   },
+   {
+-    title: "Panel en Tiempo Real",
+-    description:
+-      "Confirmaciones, asistencia y métricas de tu evento actualizadas al instante.",
+-    icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z",
++    title: "Decisiones claras antes y durante el evento",
++    description: "Visualiza asistencia en tiempo real y ajusta logística al instante.",
++    support: "Información accionable · Tranquilidad operativa",
++    tone: "gray",
++    image: "/images/estadisticas.png",
++    imageAlt: "Panel de estadísticas del evento",
+   },
+ ];
+ 
+@@ -37,67 +49,68 @@ export const BenefitsSection = () => {
+   return (
+     <section
+       id="beneficios"
+-      className="bg-[#080808] py-32 md:py-40 relative overflow-hidden"
++      className="py-12 md:py-16 bg-[#080808]"
+       aria-label="Beneficios de la plataforma"
+     >
+-      <div
+-        className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gold/[0.02] blur-[140px] rounded-full pointer-events-none"
+-        aria-hidden="true"
+-      />
+-
+-      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-10">
+-        {/* Header */}
+-        <div className="text-center space-y-6 mb-20">
++      <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-10 space-y-6 md:space-y-8">
++        <div className="text-center space-y-6 py-14 md:py-20">
+           <FadeInView>
+-            <p className="text-[14px] uppercase tracking-[0.4em] text-gold">
++            <p className="text-[12px] uppercase tracking-[0.3em] text-white/45">
+               Beneficios
+             </p>
+           </FadeInView>
+           <FadeInView delay={0.1}>
+-            <h2 className="font-display text-3xl md:text-5xl text-[#F2F2F2] font-light leading-tight">
+-              Todo lo que necesitas.
++            <h2 className="font-display text-4xl md:text-6xl text-[#f2f2f2] font-light leading-[1.06]">
++              Resultados claros.
+               <br />
+-              <span className="text-white/40">Nada que sobre.</span>
++              <span className="text-white/45">Sin complejidad operativa.</span>
+             </h2>
+           </FadeInView>
+         </div>
+ 
+-        {/* Grid — 4 columns on desktop */}
+-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+-          {benefits.map((benefit, idx) => (
+-            <FadeInView key={benefit.title} delay={0.1 + idx * 0.08}>
+-              <article className="group relative flex flex-col items-center text-center p-8 border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm hover:border-gold/20 transition-all duration-500 hover:-translate-y-1 h-full">
+-                {/* Gold top accent */}
+-                <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
++        {benefits.map((benefit, idx) => {
++          const isGray = benefit.tone === "gray";
+ 
+-                {/* Icon */}
+-                <div className="w-12 h-12 flex items-center justify-center mb-6 border border-gold/20 rounded-full group-hover:border-gold/40 transition-colors duration-300">
+-                  <svg
+-                    width="22"
+-                    height="22"
+-                    viewBox="0 0 24 24"
+-                    fill="none"
+-                    stroke="currentColor"
+-                    strokeWidth="1.5"
+-                    strokeLinecap="round"
+-                    strokeLinejoin="round"
+-                    className="text-gold"
+-                    aria-hidden="true"
+-                  >
+-                    <path d={benefit.icon} />
+-                  </svg>
+-                </div>
++          return (
++            <FadeInView key={benefit.title} delay={0.08 + idx * 0.06}>
++              <article
++                className={`rounded-[34px] border px-7 py-10 md:px-12 md:py-14 ${
++                  isGray
++                    ? "bg-[#121212] border-white/[0.08]"
++                    : "bg-[#0e0e0f] border-white/[0.08]"
++                }`}
++              >
++                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
++                  <header className="space-y-6">
++                    <p className="text-[12px] uppercase tracking-[0.24em] text-white/45">
++                      Beneficio {idx + 1}
++                    </p>
++                    <h3 className="font-display text-4xl md:text-6xl text-[#f2f2f2] font-light leading-[1.04] tracking-tight">
++                      {benefit.title}
++                    </h3>
++                    <p className="text-white/65 text-base md:text-lg font-light leading-relaxed max-w-xl">
++                      {benefit.description}
++                    </p>
++                    <p className="text-white/45 text-sm uppercase tracking-[0.15em]">
++                      {benefit.support}
++                    </p>
++                  </header>
+ 
+-                <h3 className="font-display text-lg text-[#F2F2F2] tracking-wide mb-3">
+-                  {benefit.title}
+-                </h3>
+-                <p className="text-white/40 text-sm leading-relaxed font-light">
+-                  {benefit.description}
+-                </p>
++                  <div className="relative h-[240px] md:h-[300px] rounded-[24px] bg-[#17181a] border border-white/[0.08] flex items-center justify-center overflow-hidden">
++                    <Image
++                      src={benefit.image}
++                      alt={benefit.imageAlt}
++                      width={760}
++                      height={570}
++                      className="w-[92%] h-auto drop-shadow-[0_16px_26px_rgba(0,0,0,0.36)]"
++                      sizes="(max-width: 1024px) 90vw, 44vw"
++                    />
++                  </div>
++                </div>
+               </article>
+             </FadeInView>
+-          ))}
+-        </div>
++          );
++        })}
+       </div>
+     </section>
+   );
+diff --git a/features/wedding-showcase/components/ExclusivitySection.tsx b/features/wedding-showcase/components/ExclusivitySection.tsx
+index 7722780..aa30dd2 100644
+--- a/features/wedding-showcase/components/ExclusivitySection.tsx
++++ b/features/wedding-showcase/components/ExclusivitySection.tsx
+@@ -1,4 +1,5 @@
+ import { FadeInView } from "@/shared/ui/FadeInView";
++import { WhatsAppLink } from "@/shared/ui/WhatsAppLink";
+ 
+ export const ExclusivitySection = () => {
+   return (
+@@ -29,7 +30,7 @@ export const ExclusivitySection = () => {
+         </FadeInView>
+ 
+         <FadeInView delay={0.3}>
+-          <a
++          <WhatsAppLink
+             href="https://wa.me/5559958257?text=Hola%2C%20quiero%20consultar%20disponibilidad%20para%20mi%20boda"
+             target="_blank"
+             rel="noopener noreferrer"
+@@ -37,7 +38,7 @@ export const ExclusivitySection = () => {
+             aria-label="Solicitar disponibilidad por WhatsApp"
+           >
+             Solicitar Disponibilidad
+-          </a>
++          </WhatsAppLink>
+         </FadeInView>
+       </div>
+     </section>
+diff --git a/features/wedding-showcase/components/FinalCTA.tsx b/features/wedding-showcase/components/FinalCTA.tsx
+index 0922199..f0d183c 100644
+--- a/features/wedding-showcase/components/FinalCTA.tsx
++++ b/features/wedding-showcase/components/FinalCTA.tsx
+@@ -1,57 +1,50 @@
+ import { FadeInView } from "@/shared/ui/FadeInView";
++import { WhatsAppLink } from "@/shared/ui/WhatsAppLink";
+ 
+ export const FinalCTA = () => {
+   return (
+     <section
+       id="acceso"
+-      className="relative py-28 md:py-36 overflow-hidden bg-[#101010]"
++      className="relative py-24 md:py-32 overflow-hidden bg-[#101214]"
+       aria-label="Llamada final a la acción"
+     >
+-      {/* Gold ambient glow */}
+       <div
+-        className="absolute inset-0 bg-gold/[0.03] pointer-events-none"
++        className="absolute inset-0 bg-white/[0.02] pointer-events-none"
+         aria-hidden="true"
+       />
+-      <div
+-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-gold/[0.06] blur-[160px] rounded-full pointer-events-none"
+-        aria-hidden="true"
+-      />
+-
+-      {/* Top border — gold accent */}
+-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+ 
+       <div className="relative z-10 max-w-3xl mx-auto px-6 lg:px-10 text-center">
+         <FadeInView>
+-          <p className="text-[14px] uppercase tracking-[0.4em] text-gold mb-6">
++          <p className="text-[12px] uppercase tracking-[0.3em] text-white/45 mb-6">
+             Acción Final
+           </p>
+         </FadeInView>
+ 
+         <FadeInView delay={0.1}>
+-          <h2 className="font-display text-3xl md:text-5xl text-[#F2F2F2] font-light leading-tight mb-8">
+-            Tu boda merece una experiencia
++          <h2 className="font-display text-4xl md:text-6xl text-[#f5f5f7] font-light leading-tight mb-8">
++            Una sola conversación
+             <br />
+-            impecable de principio a fin.
++            puede cambiar todo.
+           </h2>
+         </FadeInView>
+ 
+         <FadeInView delay={0.2}>
+-          <p className="text-white/40 text-lg leading-relaxed font-light max-w-md mx-auto mb-12">
+-            Escríbenos ahora y recibe una guía clara para digitalizar la gestión
+-            de tus invitados sin fricción.
++          <p className="text-white/60 text-lg leading-relaxed font-light max-w-xl mx-auto mb-12">
++            Escríbenos por WhatsApp y te mostramos cómo elevar la gestión de
++            invitados con una experiencia verdaderamente premium.
+           </p>
+         </FadeInView>
+ 
+         <FadeInView delay={0.3}>
+-          <a
++          <WhatsAppLink
+             href="https://wa.me/5559958257?text=Hola%2C%20me%20interesa%20una%20demostraci%C3%B3n%20privada%20de%20SoomosNova"
+             target="_blank"
+             rel="noopener noreferrer"
+-            className="inline-block px-12 py-5 bg-gradient-gold text-[#080808] font-semibold text-[14px] uppercase tracking-[0.25em] transition-shadow duration-300 hover:shadow-[0_0_50px_rgba(212,175,55,0.3)]"
++            className="inline-block px-11 py-4 rounded-full bg-white text-[#101214] font-medium text-[13px] uppercase tracking-[0.2em] transition-all duration-300 hover:bg-[#e8e8e8] hover:-translate-y-[1px]"
+             aria-label="Chatear por WhatsApp"
+           >
+             Chatea por WhatsApp
+-          </a>
++          </WhatsAppLink>
+         </FadeInView>
+       </div>
+     </section>
+diff --git a/features/wedding-showcase/components/Footer.tsx b/features/wedding-showcase/components/Footer.tsx
+index b93df78..918af54 100644
+--- a/features/wedding-showcase/components/Footer.tsx
++++ b/features/wedding-showcase/components/Footer.tsx
+@@ -1,4 +1,5 @@
+ import { FadeInView } from "@/shared/ui/FadeInView";
++import { WhatsAppLink } from "@/shared/ui/WhatsAppLink";
+ 
+ const FACEBOOK_URL =
+   "https://www.facebook.com/profile.php?id=61588124897380";
+@@ -25,86 +26,62 @@ export const Footer = () => {
+ 
+   return (
+     <footer
+-      className="bg-[#060606] border-t border-white/[0.06] py-16 md:py-20"
++      className="bg-[#111214] border-t border-white/[0.08] py-14 md:py-16"
+       role="contentinfo"
+     >
+       <div className="max-w-6xl mx-auto px-6 lg:px-10">
+         <FadeInView>
+-          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-12">
+-            {/* Brand */}
+-            <div className="space-y-4">
+-              <span className="font-display text-2xl tracking-wide text-white">
++          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
++            <div className="space-y-3">
++              <span className="font-display text-xl tracking-wide text-white">
+                 Soomos<span className="text-gold">Nova</span>
+               </span>
+-              <p className="text-white/30 text-sm font-light leading-relaxed max-w-xs">
+-                Gestión digital premium de invitados para bodas exclusivas.
++              <p className="text-white/45 text-sm font-light leading-relaxed max-w-xs">
++                Gestión digital premium para invitados en bodas de alta gama.
+               </p>
+             </div>
+ 
+-            {/* Contact */}
+-            <div className="space-y-4">
+-              <p className="text-[12px] uppercase tracking-[0.3em] text-white/40 font-medium">
++            <div className="space-y-3">
++              <p className="text-[11px] uppercase tracking-[0.22em] text-white/45 font-medium">
+                 Contacto
+               </p>
+-              <div className="space-y-2">
++              <div className="space-y-2 text-sm">
+                 <a
+                   href={`mailto:${EMAIL}?subject=Solicitud%20de%20disponibilidad%20%E2%80%93%20Boda%20%5BFECHA%5D&body=Hola%20equipo%20SoomosNova%2C%0D%0A%0D%0AEstoy%20interesada%2Fo%20en%20conocer%20m%C3%A1s%20sobre%20el%20sistema%20premium%20de%20gesti%C3%B3n%20digital%20para%20invitados.%0D%0A%0D%0ADatos%20de%20mi%20evento%3A%0D%0A%E2%80%A2%20Fecha%20tentativa%3A%0D%0A%E2%80%A2%20Ciudad%3A%0D%0A%E2%80%A2%20N%C3%BAmero%20aproximado%20de%20invitados%3A%0D%0A%0D%0AMe%20gustar%C3%ADa%20agendar%20una%20demostraci%C3%B3n%20privada%20y%20conocer%20disponibilidad.%0D%0A%0D%0AQuedo%20atenta%2Fo%20a%20su%20respuesta.%0D%0A%0D%0ANombre%3A%0D%0ATel%C3%A9fono%20de%20contacto%3A`}
+-                  className="block text-white/50 text-sm hover:text-gold transition-colors duration-300 font-light"
++                  className="block text-white/60 hover:text-white transition-colors duration-300 font-light"
+                   aria-label={`Enviar correo a ${EMAIL}`}
+                 >
+                   {EMAIL}
+                 </a>
+-                <a
+-                  href={`mailto:${EMAIL}?subject=Solicitud%20de%20disponibilidad%20%E2%80%93%20Boda%20%5BFECHA%5D&body=Hola%20equipo%20SoomosNova%2C%0D%0A%0D%0AEstoy%20interesada%2Fo%20en%20conocer%20m%C3%A1s%20sobre%20el%20sistema%20premium%20de%20gesti%C3%B3n%20digital%20para%20invitados.%0D%0A%0D%0ADatos%20de%20mi%20evento%3A%0D%0A%E2%80%A2%20Fecha%20tentativa%3A%0D%0A%E2%80%A2%20Ciudad%3A%0D%0A%E2%80%A2%20N%C3%BAmero%20aproximado%20de%20invitados%3A%0D%0A%0D%0AMe%20gustar%C3%ADa%20agendar%20una%20demostraci%C3%B3n%20privada%20y%20conocer%20disponibilidad.%0D%0A%0D%0AQuedo%20atenta%2Fo%20a%20su%20respuesta.%0D%0A%0D%0ANombre%3A%0D%0ATel%C3%A9fono%20de%20contacto%3A`}
+-                  className="inline-flex items-center gap-2 mt-2 px-4 py-2 border border-white/[0.12] rounded-full text-white/55 text-xs uppercase tracking-[0.2em] hover:border-gold/30 hover:text-gold transition-all duration-300"
+-                  aria-label="Abrir Gmail para enviar correo"
+-                >
+-                  <svg
+-                    width="14"
+-                    height="14"
+-                    viewBox="0 0 24 24"
+-                    fill="none"
+-                    stroke="currentColor"
+-                    strokeWidth="1.5"
+-                    strokeLinecap="round"
+-                    strokeLinejoin="round"
+-                    aria-hidden="true"
+-                  >
+-                    <path d="M4 6h16v12H4z" />
+-                    <path d="M22 6l-10 7L2 6" />
+-                  </svg>
+-                  Gmail
+-                </a>
+-                <a
++                <WhatsAppLink
+                   href={WHATSAPP_URL}
+                   target="_blank"
+                   rel="noopener noreferrer"
+-                  className="block text-white/50 text-sm hover:text-gold transition-colors duration-300 font-light"
++                  className="block text-white/60 hover:text-white transition-colors duration-300 font-light"
+                   aria-label="Contactar por WhatsApp"
+                 >
+                   +52 55 5995 8257
+-                </a>
++                </WhatsAppLink>
+               </div>
+             </div>
+ 
+-            {/* Social */}
+-            <div className="space-y-4">
+-              <p className="text-[12px] uppercase tracking-[0.3em] text-white/40 font-medium">
++            <div className="space-y-3">
++              <p className="text-[11px] uppercase tracking-[0.22em] text-white/45 font-medium">
+                 Redes
+               </p>
+-              <div className="flex gap-4">
++              <div className="flex gap-3">
+                 {socialLinks.map((social) => (
+                   <a
+                     key={social.label}
+                     href={social.href}
+                     target="_blank"
+                     rel="noopener noreferrer"
+-                    className="w-10 h-10 flex items-center justify-center border border-white/[0.08] hover:border-gold/30 rounded-full text-white/40 hover:text-gold transition-all duration-300"
++                    className="w-9 h-9 flex items-center justify-center border border-white/[0.16] rounded-full text-white/55 hover:text-white hover:border-white/40 transition-all duration-300"
+                     aria-label={`Visitar ${social.label}`}
+                   >
+                     <svg
+-                      width="18"
+-                      height="18"
++                      width="16"
++                      height="16"
+                       viewBox="0 0 24 24"
+                       fill="none"
+                       stroke="currentColor"
+@@ -122,9 +99,8 @@ export const Footer = () => {
+           </div>
+         </FadeInView>
+ 
+-        {/* Divider + Copyright */}
+-        <div className="border-t border-white/[0.06] mt-12 pt-8">
+-          <p className="text-white/20 text-xs text-center font-light tracking-wide">
++        <div className="border-t border-white/[0.08] mt-10 pt-6">
++          <p className="text-white/35 text-xs text-center font-light tracking-[0.06em]">
+             {year} SoomosNova. Todos los derechos reservados.
+           </p>
+         </div>
+diff --git a/features/wedding-showcase/components/Hero.tsx b/features/wedding-showcase/components/Hero.tsx
+index 786f45f..e78e108 100644
+--- a/features/wedding-showcase/components/Hero.tsx
++++ b/features/wedding-showcase/components/Hero.tsx
+@@ -1,6 +1,7 @@
+ "use client";
+ 
+ import { motion } from "framer-motion";
++import { WhatsAppLink } from "@/shared/ui/WhatsAppLink";
+ 
+ const fadeUp = (delay: number) => ({
+   initial: { opacity: 0, y: 20 },
+@@ -11,81 +12,55 @@ const fadeUp = (delay: number) => ({
+ export const Hero = () => {
+   return (
+     <section
+-      className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 py-32 md:py-40 overflow-hidden bg-[#080808]"
++      className="relative min-h-[92vh] flex flex-col items-center justify-center text-center px-6 py-24 md:py-36 overflow-hidden bg-[#080808]"
+       aria-label="Presentación principal"
+     >
+-      {/* Ambient gold glow — layered for depth */}
+       <div
+-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gold/[0.06] blur-[150px] rounded-full pointer-events-none"
+-        aria-hidden="true"
+-      />
+-      <div
+-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-gold/[0.03] blur-[100px] rounded-full pointer-events-none"
++        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[620px] h-[320px] bg-gold/[0.06] blur-[120px] rounded-full pointer-events-none"
+         aria-hidden="true"
+       />
+ 
+-      {/* Content */}
+       <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center gap-10">
+-        {/* Exclusivity badge */}
+         <motion.div {...fadeUp(0)}>
+-          <span className="inline-block border border-gold/20 px-6 py-2 text-gold text-[14px] tracking-[0.35em] font-sans font-medium uppercase">
++          <span className="inline-block border border-white/15 px-6 py-2 text-white/55 text-[12px] tracking-[0.3em] font-sans font-medium uppercase">
+             SoomosNova
+           </span>
+         </motion.div>
+ 
+-        {/* Headline — Emotional: Control + Elegance */}
+         <motion.h1
+           {...fadeUp(0.15)}
+-          className="font-display text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.08] tracking-tight text-[#F2F2F2]"
++          className="font-display text-5xl md:text-7xl lg:text-[5.2rem] leading-[1.05] tracking-tight text-[#f2f2f2]"
+         >
+-          Control total de invitados
++          Invitados confirmados.
+           <br />
+-          <em className="not-italic text-transparent bg-clip-text bg-gradient-gold">
+-            para una boda impecable.
++          <em className="not-italic text-white/55">
++            Acceso bajo control.
+           </em>
+         </motion.h1>
+ 
+-        {/* Subheadline — Clear value proposition */}
+         <motion.p
+           {...fadeUp(0.3)}
+-          className="font-sans text-white/45 text-lg md:text-2xl max-w-2xl leading-relaxed font-light"
++          className="font-sans text-white/60 text-lg md:text-2xl max-w-2xl leading-relaxed font-light"
+         >
+-          Invitaciones digitales, confirmaciones, acceso QR y galería privada en
+-          una sola experiencia premium.
++          Elimina el caos operativo y coordina tu boda con precisión: invitación
++          digital, confirmaciones y control de acceso en un solo sistema.
+         </motion.p>
+ 
+-        {/* CTAs — Conversion focused */}
+         <motion.div
+           {...fadeUp(0.45)}
+-          className="flex flex-col items-center gap-6 pt-6"
++          className="flex flex-col items-center gap-6 pt-8"
+         >
+-          <a
++          <WhatsAppLink
+             href="https://wa.me/5559958257?text=Hola%2C%20estoy%20interesado%20en%20conocer%20el%20sistema%20de%20gesti%C3%B3n%20digital%20de%20invitados%20de%20Soomos%20Nova%20para%20mi%20evento.%20Me%20gustar%C3%ADa%20agendar%20una%20demostraci%C3%B3n%20privada."
+             target="_blank"
+             rel="noopener noreferrer"
+-            className="px-10 py-4 bg-gradient-gold text-[#080808] font-semibold text-[14px] uppercase tracking-[0.25em] transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(212,175,55,0.25)]"
++            className="px-10 py-4 rounded-full bg-white text-[#111111] font-medium text-[13px] uppercase tracking-[0.2em] transition-all duration-300 hover:bg-[#e9e9e9] hover:-translate-y-[1px]"
+             aria-label="Chatear por WhatsApp"
+           >
+             Chatea por WhatsApp
+-          </a>
+-
+-          {/* Scroll nudge */}
+-          <p className="text-sm text-white/25 font-light tracking-widest uppercase">
+-            Descubre más ↓
+-          </p>
++          </WhatsAppLink>
+         </motion.div>
+       </div>
+-
+-      {/* Scroll indicator */}
+-      <motion.div
+-        initial={{ opacity: 0 }}
+-        animate={{ opacity: 1 }}
+-        transition={{ delay: 1.6, duration: 1.2 }}
+-        className="absolute bottom-12 left-1/2 -translate-x-1/2"
+-        aria-hidden="true"
+-      >
+-        <div className="w-[1px] h-16 bg-gradient-to-b from-transparent via-gold/40 to-transparent" />
+-      </motion.div>
+     </section>
+   );
+ };
+\ No newline at end of file
+diff --git a/features/wedding-showcase/components/Navbar.tsx b/features/wedding-showcase/components/Navbar.tsx
+index 4fd5dfc..6df45c3 100644
+--- a/features/wedding-showcase/components/Navbar.tsx
++++ b/features/wedding-showcase/components/Navbar.tsx
+@@ -2,6 +2,7 @@
+ 
+ import React, { useState, useEffect } from "react";
+ import { motion, AnimatePresence } from "framer-motion";
++import { WhatsAppLink } from "@/shared/ui/WhatsAppLink";
+ 
+ const navItems = [
+   { label: "Beneficios", href: "#beneficios" },
+@@ -88,7 +89,7 @@ export const Navbar = () => {
+               </a>
+             </div>
+ 
+-            <a
++            <WhatsAppLink
+               href="https://wa.me/5559958257?text=Hola%2C%20quiero%20agendar%20una%20demostraci%C3%B3n%20privada%20de%20SoomosNova"
+               target="_blank"
+               rel="noopener noreferrer"
+@@ -96,7 +97,7 @@ export const Navbar = () => {
+               aria-label="Agendar demostración privada"
+             >
+               Agendar Demo
+-            </a>
++            </WhatsAppLink>
+           </div>
+ 
+           {/* Mobile Menu Button */}
+@@ -146,7 +147,7 @@ export const Navbar = () => {
+                   {item.label}
+                 </a>
+               ))}
+-              <a
++              <WhatsAppLink
+                 href="https://wa.me/5559958257?text=Hola%2C%20quiero%20agendar%20una%20demostraci%C3%B3n%20privada%20de%20SoomosNova"
+                 target="_blank"
+                 rel="noopener noreferrer"
+@@ -155,7 +156,7 @@ export const Navbar = () => {
+                 aria-label="Agendar demostración privada"
+               >
+                 Agendar Demo
+-              </a>
++              </WhatsAppLink>
+ 
+               {/* Mobile Social Icons */}
+               <div className="flex items-center gap-4 mt-4">
+diff --git a/features/wedding-showcase/components/TestimonialsSection.tsx b/features/wedding-showcase/components/TestimonialsSection.tsx
+index e0e58a7..a9a3491 100644
+--- a/features/wedding-showcase/components/TestimonialsSection.tsx
++++ b/features/wedding-showcase/components/TestimonialsSection.tsx
+@@ -2,30 +2,14 @@ interface Testimonial {
+   quote: string;
+   name: string;
+   detail: string;
+-  isPlaceholder?: boolean;
+ }
+ 
+ const testimonials: Testimonial[] = [
+   {
+     quote:
+-      "Aquí aparecerá un testimonio real de una pareja sobre la experiencia con SoomosNova.",
+-    name: "Testimonio disponible pronto",
+-    detail: "Estructura lista para agregar prueba social real",
+-    isPlaceholder: true,
+-  },
+-  {
+-    quote:
+-      "Este espacio está preparado para mostrar resultados, confianza y autoridad con testimonios verificados.",
+-    name: "Testimonio disponible pronto",
+-    detail: "Añade nombre de pareja, ciudad y fecha del evento",
+-    isPlaceholder: true,
+-  },
+-  {
+-    quote:
+-      "La sección ya está diseñada para reemplazar este texto por citas reales sin tocar la estructura visual.",
+-    name: "Testimonio disponible pronto",
+-    detail: "Mantiene consistencia premium y legibilidad",
+-    isPlaceholder: true,
++      "Cada interacción con invitados exige precisión, privacidad y una ejecución impecable. SoomosNova está diseñado para responder a ese estándar.",
++    name: "SoomosNova",
++    detail: "Plataforma de gestión premium para bodas",
+   },
+ ];
+ 
+@@ -33,49 +17,41 @@ export const TestimonialsSection = () => {
+   return (
+     <section
+       id="testimonios"
+-      className="bg-[#080808] py-32 md:py-40 relative overflow-hidden"
++      className="bg-[#0c0c0d] py-24 md:py-32"
+       aria-label="Testimonios de parejas"
+     >
+-      <div
+-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[250px] bg-gold/[0.03] blur-[130px] rounded-full pointer-events-none"
+-        aria-hidden="true"
+-      />
+-
+       <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-10">
+-        <p className="text-center text-[14px] uppercase tracking-[0.4em] text-gold mb-6">
++        <p className="text-center text-[12px] uppercase tracking-[0.3em] text-white/45 mb-6">
+           Testimonios
+         </p>
+-        <h2 className="text-center font-display text-3xl md:text-5xl text-[#F2F2F2] font-light leading-tight mb-14">
+-          Prueba social con presencia elegante.
++        <h2 className="text-center font-display text-4xl md:text-6xl text-[#f2f2f2] font-light leading-tight mb-14">
++          Confianza que se percibe
++          <br />
++          <span className="text-white/50">desde el primer vistazo.</span>
+         </h2>
+ 
+-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
++        <div className="max-w-3xl mx-auto">
+           {testimonials.map((testimonial, index) => (
+             <article
+               key={index}
+-              className="relative h-full border border-white/[0.08] bg-white/[0.02] backdrop-blur-sm p-8 md:p-9"
++              className="relative h-full rounded-[30px] border border-white/[0.08] bg-[#121212] p-9 md:p-12 text-center"
+             >
+               <span
+-                className="text-gold/20 font-display text-5xl leading-none select-none"
++                className="text-white/20 font-display text-5xl leading-none select-none"
+                 aria-hidden="true"
+               >
+                 &ldquo;
+               </span>
+-              <p className="mt-4 text-white/60 text-base leading-relaxed font-light italic">
++              <p className="mt-5 text-white/68 text-lg leading-relaxed font-light italic">
+                 {testimonial.quote}
+               </p>
+-              <footer className="mt-8 space-y-1">
+-                <p className="font-display text-[#F2F2F2] text-base tracking-wide">
++              <footer className="mt-10 space-y-2">
++                <p className="font-display text-[#f2f2f2] text-lg tracking-wide">
+                   {testimonial.name}
+                 </p>
+-                <p className="text-white/35 text-sm font-light">
++                <p className="text-white/40 text-sm font-light">
+                   {testimonial.detail}
+                 </p>
+-                {testimonial.isPlaceholder && (
+-                  <p className="text-gold/70 text-xs uppercase tracking-[0.18em] pt-2">
+-                    Placeholder
+-                  </p>
+-                )}
+               </footer>
+             </article>
+           ))}
+diff --git a/public/images/confirmada_qr.png b/public/images/confirmada_qr.png
+new file mode 100644
+index 0000000..73af12c
+Binary files /dev/null and b/public/images/confirmada_qr.png differ
+diff --git a/public/images/estadisticas.png b/public/images/estadisticas.png
+new file mode 100644
+index 0000000..6a466ca
+Binary files /dev/null and b/public/images/estadisticas.png differ
+diff --git a/public/images/galeria.png b/public/images/galeria.png
+new file mode 100644
+index 0000000..21ed4d3
+Binary files /dev/null and b/public/images/galeria.png differ
+diff --git a/public/images/invitacion_premium.png b/public/images/invitacion_premium.png
+new file mode 100644
+index 0000000..af9aa4b
+Binary files /dev/null and b/public/images/invitacion_premium.png differ
+diff --git a/public/invitation-mockup.svg b/public/invitation-mockup.svg
+new file mode 100644
+index 0000000..d994d25
+--- /dev/null
++++ b/public/invitation-mockup.svg
+@@ -0,0 +1,41 @@
++<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
++  <defs>
++    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
++      <stop offset="0" stop-color="#1E1F22"/>
++      <stop offset="1" stop-color="#121316"/>
++    </linearGradient>
++    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
++      <stop offset="0" stop-color="#F6F0DA"/>
++      <stop offset="1" stop-color="#D9CBA3"/>
++    </linearGradient>
++    <filter id="shadow" x="120" y="120" width="960" height="700" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
++      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
++      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
++      <feOffset dy="28"/>
++      <feGaussianBlur stdDeviation="24"/>
++      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.45 0"/>
++      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_2"/>
++      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_2" result="shape"/>
++    </filter>
++  </defs>
++
++  <rect width="1200" height="900" fill="url(#bg)"/>
++
++  <g filter="url(#shadow)">
++    <rect x="210" y="170" width="780" height="560" rx="36" fill="url(#card)"/>
++    <rect x="210" y="170" width="780" height="560" rx="36" stroke="#F9F2DE" stroke-opacity="0.35"/>
++  </g>
++
++  <rect x="290" y="250" width="200" height="16" rx="8" fill="#5F5440" fill-opacity="0.45"/>
++  <rect x="290" y="292" width="620" height="22" rx="11" fill="#4A3F2F" fill-opacity="0.65"/>
++  <rect x="290" y="330" width="520" height="22" rx="11" fill="#4A3F2F" fill-opacity="0.65"/>
++  <rect x="290" y="390" width="380" height="14" rx="7" fill="#5F5440" fill-opacity="0.42"/>
++  <rect x="290" y="420" width="500" height="14" rx="7" fill="#5F5440" fill-opacity="0.36"/>
++
++  <rect x="290" y="500" width="280" height="74" rx="16" fill="#1D1D1D"/>
++  <rect x="290" y="500" width="280" height="74" rx="16" stroke="#000" stroke-opacity="0.2"/>
++  <rect x="350" y="530" width="160" height="14" rx="7" fill="#F2F2F2" fill-opacity="0.9"/>
++
++  <rect x="805" y="498" width="106" height="106" rx="12" fill="#171717"/>
++  <path d="M829 539H887V555H829V539ZM829 563H860V579H829V563ZM868 563H887V602H868V563Z" fill="#D4AF37"/>
++</svg>
+diff --git a/shared/ui/WhatsAppButton.tsx b/shared/ui/WhatsAppButton.tsx
+index c706fc0..526d052 100644
+--- a/shared/ui/WhatsAppButton.tsx
++++ b/shared/ui/WhatsAppButton.tsx
+@@ -1,26 +1,28 @@
+ "use client";
+ 
++import { WhatsAppLink } from "@/shared/ui/WhatsAppLink";
++
+ const WHATSAPP_URL =
+   "https://wa.me/5559958257?text=Hola%2C%20estoy%20interesado%20en%20conocer%20el%20sistema%20de%20gesti%C3%B3n%20digital%20de%20invitados%20de%20Soomos%20Nova%20para%20mi%20evento.%20Me%20gustar%C3%ADa%20agendar%20una%20demostraci%C3%B3n%20privada.";
+ 
+ export const WhatsAppButton = () => {
+   return (
+-    <a
++    <WhatsAppLink
+       href={WHATSAPP_URL}
+       target="_blank"
+       rel="noopener noreferrer"
+-      className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] shadow-[0_4px_20px_rgba(37,211,102,0.35)] hover:shadow-[0_4px_30px_rgba(37,211,102,0.5)] hover:scale-105 transition-all duration-300"
++      className="fixed bottom-5 right-5 z-50 flex items-center justify-center w-12 h-12 rounded-full bg-[#161718] border border-white/15 shadow-[0_8px_24px_rgba(0,0,0,0.4)] hover:shadow-[0_10px_28px_rgba(0,0,0,0.55)] hover:-translate-y-[1px] transition-all duration-300"
+       aria-label="Contactar por WhatsApp"
+     >
+       <svg
+-        width="28"
+-        height="28"
++        width="22"
++        height="22"
+         viewBox="0 0 24 24"
+-        fill="white"
++        fill="#25D366"
+         aria-hidden="true"
+       >
+         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+       </svg>
+-    </a>
++    </WhatsAppLink>
+   );
+ };

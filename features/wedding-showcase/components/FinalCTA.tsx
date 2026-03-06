@@ -1,4 +1,5 @@
 import { FadeInView } from "@/shared/ui/FadeInView";
+import { WhatsAppLink } from "@/shared/ui/WhatsAppLink";
 
 export const FinalCTA = () => {
   return (
@@ -35,7 +36,7 @@ export const FinalCTA = () => {
         </FadeInView>
 
         <FadeInView delay={0.3}>
-          <a
+          <WhatsAppLink
             href="https://wa.me/5559958257?text=Hola%2C%20me%20interesa%20una%20demostraci%C3%B3n%20privada%20de%20SoomosNova"
             target="_blank"
             rel="noopener noreferrer"
@@ -43,7 +44,7 @@ export const FinalCTA = () => {
             aria-label="Chatear por WhatsApp"
           >
             Chatea por WhatsApp
-          </a>
+          </WhatsAppLink>
         </FadeInView>
       </div>
     </section>

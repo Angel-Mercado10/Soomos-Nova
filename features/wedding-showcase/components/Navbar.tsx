@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { WhatsAppLink } from "@/shared/ui/WhatsAppLink";
 
 const navItems = [
   { label: "Beneficios", href: "#beneficios" },
@@ -88,7 +89,7 @@ export const Navbar = () => {
               </a>
             </div>
 
-            <a
+            <WhatsAppLink
               href="https://wa.me/5559958257?text=Hola%2C%20quiero%20agendar%20una%20demostraci%C3%B3n%20privada%20de%20SoomosNova"
               target="_blank"
               rel="noopener noreferrer"
@@ -96,7 +97,7 @@ export const Navbar = () => {
               aria-label="Agendar demostración privada"
             >
               Agendar Demo
-            </a>
+            </WhatsAppLink>
           </div>
 
           {/* Mobile Menu Button */}
@@ -146,7 +147,7 @@ export const Navbar = () => {
                   {item.label}
                 </a>
               ))}
-              <a
+              <WhatsAppLink
                 href="https://wa.me/5559958257?text=Hola%2C%20quiero%20agendar%20una%20demostraci%C3%B3n%20privada%20de%20SoomosNova"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -155,7 +156,7 @@ export const Navbar = () => {
                 aria-label="Agendar demostración privada"
               >
                 Agendar Demo
-              </a>
+              </WhatsAppLink>
 
               {/* Mobile Social Icons */}
               <div className="flex items-center gap-4 mt-4">
